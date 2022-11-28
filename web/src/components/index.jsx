@@ -30,7 +30,7 @@ const Weather = () => {
             <h1 className="h1"> React Weather App</h1>
                 <div className="mainGlass">
                     <div className="glass">
-                        {/* <div className="city">{weather.data.name}</div> */}
+                        <div className="city">{weather.name}</div>
                         <div className="opposite">
                             <div className="TMM">
 
