@@ -1,10 +1,9 @@
 import express from "express"
 import path from 'path'
+import cors from 'cors'
 const app = express()
 const port = process.env.PORT||3000
-const __dirname = path.resolve();
-app.use('/', express.static(path.join (__dirname, './web/build')))
-
+app.use(cors());
 app.get('/weather', (req, res) => {
   res.send({
     temp: 30,
@@ -13,6 +12,8 @@ app.get('/weather', (req, res) => {
   })
   console.log("request IP: ", req.ip );
 })
+const __dirname = path.resolve();
+app.use('/', express.static(path.join (__dirname, './web/build')))
 app.use('*', express.static(path.join (__dirname, './web/build')))
 
 
