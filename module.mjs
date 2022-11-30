@@ -6,8 +6,9 @@ const port = process.env.PORT||3000
 app.use(cors());
 // app.get()
 app.get('/weather/:cityName', (req, res) => {
+  console.log(req.params.cityName);
   res.send({
-    city: "cityName",
+    city: req.params.cityName,
     // name: "Karachi",
     temp: "30",
     temp_min: "26",
