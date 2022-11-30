@@ -2,23 +2,33 @@ import React from "react";
 import { useState } from "react"
 import axios from "axios"
 import './index.css'
-import { useEffect } from "react";
+
+
+
 const Weather = () => {
+
     const [weather, setWeather] = useState(null);
     const [cityName, setCityName] = useState("");
+
     // useEffect(() => {
     let baseUrl = "";
     if (window.location.href.split(":")[0] === "http") {
         baseUrl = "http://localhost:3000";
     }
+
+
     const submitHandler = (e) => {
         e.preventDefault();
 
         axios.get(`${baseUrl}/weather/${cityName}`)
-            .then(response => {
+            
+        
+        .then(response => {
                 console.log(response.data);
                 setWeather(response.data)
             })
+
+
             .catch(err => {
                 console.log(err);
             })
