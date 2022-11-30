@@ -7,7 +7,7 @@ app.use(cors());
 // app.get()
 app.get('/weather/:cityName', (req, res) => {
   res.send({
-    city: cityName,
+    city: "cityName",
     // name: "Karachi",
     temp: "30",
     temp_min: "26",
