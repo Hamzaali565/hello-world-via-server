@@ -4,33 +4,42 @@ import axios from "axios"
 import './index.css'
 import { useEffect } from "react";
 const Weather = () => {
-    const [weather, setWeather] = useState([]);
+    const [weather, setWeather] = useState(null);
     const [cityName, setCityName] = useState("");
-    useEffect(() => {
+    // useEffect(() => {
+    let baseUrl = "";
+    if (window.location.href.split(":")[0] === "http") {
+        baseUrl = "http://localhost:3000";
+    }
+    const submitHandler = (e) => {
+        e.preventDefault();
 
-        const clickHandler = (e) => {
-            // e.preventDefault();
+        axios.get(`${baseUrl}/weather/${cityName}`)
+            .then(response => {
+                console.log(response.data);
+                setWeather(response.data)
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
 
-            axios.get(`https://hamzaali.cyclic.app/weather`)
-                .then(response => {
-                    console.log(response.data);
-                    setWeather(response.data)
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-        }
-
-        clickHandler();
-    }, [])
+    // submitHandler();
+    // }, [])
 
     return (
 
         <div>
             <h1 className="h1"> React Weather App</h1>
-                <div className="mainGlass">
+            <form onSubmit={submitHandler}>
+                <input className="input" type="text"
+                    required placeholder="Enter Your City Name"
+                    onChange={(e => { setCityName(e.target.value) })} />
+            </form>
+            <div className="mainGlass">
+                {(weather === null) ? null :
                     <div className="glass">
-                        <div className="city">{weather.name}</div>
+                        <div className="city">{weather.city}</div>
                         <div className="opposite">
                             <div className="TMM">
 
@@ -48,8 +57,8 @@ const Weather = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-            
+                }
+            </div>
 
         </div>
 

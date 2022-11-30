@@ -4,9 +4,11 @@ import cors from 'cors'
 const app = express()
 const port = process.env.PORT||3000
 app.use(cors());
-app.get('/weather', (req, res) => {
+app.get()
+app.get('/weather/:cityName', (req, res) => {
   res.send({
-    name: "Karachi",
+    city: cityName,
+    // name: "Karachi",
     temp: "30",
     temp_min: "26",
     temp_max: "30",
